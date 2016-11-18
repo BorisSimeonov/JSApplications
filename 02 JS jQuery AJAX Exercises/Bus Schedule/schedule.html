@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Schedule</title>
+    <style>
+        #schedule {
+            text-align: center;
+            width: 400px;
+        }
+
+        input {
+            width: 120px;
+        }
+
+        #info {
+            background-color: aquamarine;
+            border: 1px solid black;
+            margin: 0.25em;
+        }
+
+        .info {
+            font-size: 1.5em;
+            padding: 0.25em;
+        }
+    </style>
+    <script src="../../jQuery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="schedule">
+    <div id="info"><span class="info">Not Connected</span></div>
+    <div id="controls">
+        <input id="depart" value="Depart" type="button" onclick="result.depart()">
+        <input id="arrive" value="Arrive" type="button" onclick="result.arrive()" disabled="true">
+    </div>
+</div>
+<script>
+    function solve() {
+        $('#depart').attr('disabled', false);
+        $('#arrive').attr('disabled', true);
+        let nextStopNumber = 'depot';
+        let nextStopName = '';
+        let firebaseLink = "https://judgetests.firebaseio.com/schedule";
+
+        function depart() {
+            let getRequest = {
+                method: "GET",
+                url: `${firebaseLink}/${nextStopNumber}.json`,
+                success: successHandler,
+                error: errorHandler
+            };
+            try {
+                $.ajax(getRequest);
+            } catch (err) {
+                errorHandler();
+            }
+        }
+
+        function arrive() {
+            $('#info').find('span').text('Arriving at ' + nextStopName);
+            $('#depart').attr('disabled', false);
+            $('#arrive').attr('disabled', true);
+        }
+
+        function errorHandler() {
+            $('#depart').attr('disabled', true);
+            $('#arrive').attr('disabled', true);
+            $('#info').find('span').text('Error');
+        }
+
+        function successHandler(data) {
+            if(data) {
+                nextStopNumber = data.next;
+                nextStopName = data.name;
+                $('#info').find('span').text('Next stop ' + nextStopName);
+                $('#depart').attr('disabled', true);
+                $('#arrive').attr('disabled', false);
+            } else {
+                errorHandler();
+            }
+        }
+
+        return {
+            depart,
+            arrive
+        };
+    }
+    let result = solve();
+</script>
+</body>
+</html>

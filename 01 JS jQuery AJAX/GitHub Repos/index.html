@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../jQuery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="text">
+    <h1>Welcome</h1>
+    GitHub: <input type="text" id="username">
+    <button onclick="result()">Load Repositories</button>
+    <ul id="repos"></ul>
+</div>
+<script>
+    let result = function loadRepos() {
+        $('#repos').empty();
+        let userName = $('#username').val();
+
+        let request = {
+            method: 'GET',
+            url: `https://api.github.com/users/${userName}/repos`,
+            contentType: 'application/json',
+            success: displayRepos,
+            error: displayError
+        };
+
+        return $.ajax(request);
+
+        function displayRepos(data) {
+            for (let repo of data) {
+                let link = $('<a>');
+                link.text(repo.full_name);
+                link.attr('href', repo.html_url);
+                let li = $('<li>');
+                li.append(link);
+                $('#repos').append(li);
+            }
+        }
+
+        function displayError() {
+            $('#repos')
+                    .append($('<li>Error</li>'));
+        }
+    };
+</script>
+</body>
+</html>
