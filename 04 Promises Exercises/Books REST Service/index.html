@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books REST Service</title>
+    <script src="scripts/books-rest.js"></script>
+    <script src="scripts/book-class.js"></script>
+    <script src="../../jQuery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/book-rest.css">
+</head>
+<body>
+<div id="aside">
+    <fieldset id="addForm">
+        <legend>Add Book</legend>
+        <label>Title</label>
+        <input type="text" class="title"/>
+        <label>Author</label>
+        <input type="text" class="author"/>
+        <label>ISBN</label>
+        <input type="number" class="isbn"/>
+        <button id="add-btn">Add</button>
+    </fieldset>
+    <fieldset id="loadAll">
+        <legend>Load All Book</legend>
+        <button id="load-btn">Load</button>
+    </fieldset>
+</div>
+    <fieldset id="main">
+        <legend>All Books</legend>
+        <div id="book-container">
+
+        </div>
+    </fieldset>
+<script>attachEvents()</script>
+</body>
+</html>

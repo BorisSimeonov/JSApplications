@@ -1,0 +1,71 @@
+body {
+    background-color: darkgrey;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    display: block;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+legend {
+    color: gold;
+    font-size: 18px;
+}
+
+div {
+    border: 2px outset dimgrey;
+    padding: 5px;
+    margin: 5px;
+}
+
+div#aside {
+    margin-top: 8px;
+    border: 3px solid dimgray;
+    display: block;
+    background-color: dimgrey;
+    text-align: center;
+    color: white;
+}
+
+div#aside input {
+    width: 100%;
+}
+
+#book-container {
+    width: auto;
+}
+
+
+button {
+    border: 2px outset green;
+    border-radius: 15px;
+    margin-top: 7px;
+    padding: 3px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+}
+
+button#add-btn, button#load-btn, button.update, button.delete {
+    display: inline-block;
+    width: 100%;
+}
+
+.delete {
+    border: 2px outset red;
+}
+
+div.book {
+    background-color: dimgray;
+    color: white;
+    text-align: center;
+    min-width: 250px;
+    max-width: 350px;
+    display: inline-table;
+}
