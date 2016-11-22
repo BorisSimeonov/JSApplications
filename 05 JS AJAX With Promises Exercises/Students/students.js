@@ -10,7 +10,7 @@ function attachEventsAndPopulate() {
         studentFirstName = $('#FirstName'),
         studentLastName = $('#LastName'),
         studentFacNumber = $('#FacultyNumber'),
-        studentGrade = $('#Grade').val();
+        studentGrade = $('#Grade');
 
     $('#submitStudent').on('click', createStudentInKinvey);
 
@@ -28,6 +28,9 @@ function attachEventsAndPopulate() {
     }
 
     function parseStudents(studentsArray) {
+        studentsArray = studentsArray.sort( (a, b) => {
+           return a.ID - b.ID;
+        });
         studentsArray.forEach((student) => drawRow(student));
     }
 
