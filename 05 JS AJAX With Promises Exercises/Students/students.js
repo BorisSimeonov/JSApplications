@@ -1,4 +1,4 @@
-(function () {
+function attachEventsAndPopulate() {
     const studentTableUrl = 'https://baas.kinvey.com/appdata/kid_BJXTsSi-e/students',
         username = 'guest',
         password = 'guest',
@@ -6,16 +6,17 @@
         authHeaders = {'Authorization': `Basic ${base64auth}`},
         table = $('#results');
 
-    let newStudent = {
-        ID: 666,
-        FirstName: 'John',
-        LastName: 'Doe',
-        FacultyNumber: '999',
-        Grade: 313
-    };
+    let studentID = $('#studentID'),
+        studentFirstName = $('#FirstName'),
+        studentLastName = $('#LastName'),
+        studentFacNumber = $('#FacultyNumber'),
+        studentGrade = $('#Grade').val();
+
+    $('#submitStudent').on('click', createStudentInKinvey);
 
     function getStudents() {
         table.empty();
+        clearInputData();
         $.ajax({
             method: 'GET',
             contentType: 'application/json',
@@ -46,6 +47,8 @@
     }
 
     function createStudentInKinvey() {
+        let newStudent = getNewStudentData();
+
         $.ajax({
             method: 'POST',
             url: studentTableUrl,
@@ -57,9 +60,33 @@
             .catch(displayError);
     }
 
+    function getNewStudentData() {
+        let ID = studentID.val(),
+            FirstName = studentFirstName.val(),
+            LastName = studentLastName.val(),
+            FacultyNumber = studentFacNumber.val(),
+            Grade = studentGrade.val();
+
+        return {
+            ID: Number(ID),
+            FirstName: FirstName,
+            LastName: LastName,
+            FacultyNumber: FacultyNumber,
+            Grade: Number(Grade)
+        }
+    }
+
+    function clearInputData() {
+        studentID.val('');
+        studentFirstName.val('');
+        studentLastName.val('');
+        studentFacNumber.val('');
+        studentGrade.val('');
+    }
+
     function displayError(error) {
         console.log(`Error: ${error.status} (${error.statusText})`);
     }
 
-    createStudentInKinvey();
-})();
+    getStudents();
+}

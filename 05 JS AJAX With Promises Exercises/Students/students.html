@@ -47,6 +47,21 @@
     </style>
 </head>
 <body>
+<fieldset>
+    <legend>Creation form</legend>
+    <label for="studentID">ID</label>
+    <input id="studentID" type="number" required>
+    <label for="FirstName">FirstName</label>
+    <input id="FirstName" type="text" required>
+    <label for="LastName">LastName</label>
+    <input id="LastName" type="text" required>
+    <label for="FacultyNumber">FacultyNumber</label>
+    <input id="FacultyNumber" type="text" required>
+    <label for="Grade">Grade</label>
+    <input id="Grade" type="number" required>
+    <button id="submitStudent">Create New Student</button>
+    <div id="creationState"></div>
+</fieldset>
 <table id="results">
     <tr>
         <th>ID</th>
@@ -56,7 +71,9 @@
         <th>Grade</th>
     </tr>
 </table>
-<script src="students.js">
+<script src="students.js"></script>
+<script>
+    attachEventsAndPopulate();
 </script>
 </body>
 </html>
