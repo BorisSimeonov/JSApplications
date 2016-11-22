@@ -70,12 +70,16 @@ function attachEventsAndPopulate() {
             FacultyNumber = studentFacNumber.val(),
             Grade = studentGrade.val();
 
-        return {
-            ID: Number(ID),
-            FirstName: FirstName,
-            LastName: LastName,
-            FacultyNumber: FacultyNumber,
-            Grade: Number(Grade)
+        if(ID && FirstName && LastName && FacultyNumber && Grade) {
+            return {
+                ID: Number(ID),
+                FirstName: FirstName,
+                LastName: LastName,
+                FacultyNumber: FacultyNumber,
+                Grade: Number(Grade)
+            }
+        } else {
+            throw new TypeError('Empty input field');
         }
     }
 
