@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Countries And Towns</title>
+    <script src="../../jQuery-3.1.1.min.js"></script>
+    <script src="appLogic.js"></script>
+    <style>
+        table, td, tr {
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        table {
+            margin-bottom: 20px;
+        }
+
+        legend {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        div {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        section {
+            margin: 10px;
+            background-color: cornsilk;
+        }
+
+        legend {
+            color: #339933;
+        }
+    </style>
+</head>
+<body>
+<section id="content">
+    <table id="dataTable">
+    </table>
+    <div><input type="button" id="refreshTable" value="Refresh"></div>
+</section>
+
+<section id="addTown">
+    <legend>Add Town</legend>
+    <label>Town Name</label>
+    <input type="text" name="townName">
+    <label>Country Name</label>
+    <input type="text" name="countryName">
+    <div><input type="button" id="btnSubmitNewTown" value="Submit"></div>
+</section>
+
+<section id="updateCountry">
+    <legend>Update Country</legend>
+    <label>Country Name</label>
+    <input type="text" name="countryName">
+    <label>New Country Name</label>
+    <input type="text" name="newCountryName">
+    <div><input type="button" id="btnUpdateCountry" value="Submit"></div>
+</section>
+
+<section id="addCountry">
+    <legend>Add Country</legend>
+    <label>Country Name</label>
+    <input type="text" name="countryName">
+    <div><input type="button" id="btnSubmitNewCountry" value="Submit"></div>
+</section>
+
+<section id="DeleteTown">
+    <legend>Delete Town</legend>
+    <label>Town Name</label>
+    <input type="text" name="townName">
+    <div><input type="button" id="btnDeleteTown" value="Submit"></div>
+</section>
+
+<section id="DeleteCountry">
+    <legend>Delete Country</legend>
+    <label>Country Name</label>
+    <input type="text" name="countryName">
+    <div><input type="button" id="btnDeleteCountry" value="Submit"></div>
+</section>
+
+<script>attachEvents()</script>
+</body>
+</html>
