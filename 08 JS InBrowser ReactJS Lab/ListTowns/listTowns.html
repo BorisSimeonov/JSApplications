@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Town</title>
+    <script src="https://unpkg.com/react/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone"></script>
+</head>
+<body onload="listTowns('root')">
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    function listTowns(selector) {
+        let Form = React.createClass({
+            render: function () {
+                return <form onSubmit={this.props.drawTownNames}>
+                    <input type="text"/>
+                    <input type="submit" defaultValue="Submit"/>
+                </form>
+            }
+        });
+
+        let List = React.createClass({
+            render: function () {
+                let counter = 0;
+                return (
+                        <ul>
+                            {
+                                this.props.names.map(name => (<li key={counter++}>{name}</li>))
+                            }
+                        </ul>
+                )
+            }
+        });
+
+
+        let App = React.createClass({
+            getInitialState: function () {
+                return {
+                    towns: []
+                }
+            },
+            onSubmitHandler: function (event) {
+                event.preventDefault();
+                let inputData = event.target.children[0].value
+                    .split(/\s*,\s*/)
+                    .filter(item => item !== "");
+                this.setState({
+                    towns: inputData
+                });
+            },
+            render: function () {
+                return <div>
+                    <Form drawTownNames={this.onSubmitHandler}/>
+                    <List names={this.state.towns}/>
+                </div>
+            }
+        });
+
+        ReactDOM.render(
+                <App />,
+            document.getElementById(selector)
+        );
+    }
+</script>
+</html>
